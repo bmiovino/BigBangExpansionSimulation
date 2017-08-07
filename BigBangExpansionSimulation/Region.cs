@@ -28,7 +28,7 @@ namespace BigBangExpansionSimulation
                 for (int j = 0; j < 2; j++)
                     regions[j * 2 + i] = 
                         new Region(CalculateEngergy_InverseParabolic(),
-                        new Coordinate(i + Coordinate.X, j + Coordinate.Y));
+                        new Coordinate(i + (Coordinate.X * 2), j + (Coordinate.Y * 2)));
 
             return regions;
         }

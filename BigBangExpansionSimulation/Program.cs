@@ -38,7 +38,7 @@ namespace BigBangExpansionSimulation
             //    Console.WriteLine(r.ToString());
 
             RenderEngine re = new RenderEngine();
-            re.Render(@"", Universe);
+            re.Render(@"D:\Git\BigBangExpansionSimulation\Results\parabolic01.png", Universe);
 
             Console.WriteLine("Done:");
             Console.ReadLine();
