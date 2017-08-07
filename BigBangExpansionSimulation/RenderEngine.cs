@@ -12,7 +12,10 @@ namespace BigBangExpansionSimulation
     {
         public void Render(string filepath, Region[] universe)
         {
-            Bitmap b = new Bitmap(2048, 2048);
+            int width = (from u in universe select u.Coordinate.X).Max() + 1;
+            int height = (from u in universe select u.Coordinate.Y).Max() + 1;
+            
+            Bitmap b = new Bitmap(width, height);
 
             Graphics g = Graphics.FromImage(b);
 

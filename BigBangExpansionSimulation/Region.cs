@@ -33,25 +33,11 @@ namespace BigBangExpansionSimulation
             return regions;
         }
 
-        /// <summary>
-        /// bias will induce clipping and max/min energy
-        /// </summary>
-        /// <returns></returns>
         public double CalculateEngergy(IExpansionKernel epk)
         {
-            double res = 0.0F;
+            double r = (2 * (rand.NextDouble() - 0.5F));
 
-            //rand 0-1 => 2r -1.0
-            //input to => 3/4(n-(n^3/3))+1/2)
-
-            double r = (2 * (rand.NextDouble() - 0.5F)) + Energy;
-
-            if (r > 1.0)
-                r = 1.0;
-            else if (r < -1.0)
-                r = -1.0;
-
-            res = epk.EnergyPdf(r);
+            double res = epk.Clip(epk.EnergyPdf(r) + Energy);
             
             return res;
         }
@@ -60,5 +46,6 @@ namespace BigBangExpansionSimulation
         {
             return $"Coord ({Coordinate.X},{Coordinate.Y}) - Energy {Energy}";
         }
+        
     }
 }
