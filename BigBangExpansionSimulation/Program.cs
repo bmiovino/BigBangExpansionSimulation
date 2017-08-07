@@ -14,8 +14,13 @@ namespace BigBangExpansionSimulation
 
             Region[] Universe = { R };
 
-            int maxage = 11;
+            IExpansionKernel epk = new ParabolicKernel();
 
+            Console.Write("max age:");
+            int maxage = int.Parse(Console.ReadLine());
+
+            if (maxage > 11)
+                throw new Exception("Max age of 11 allowed.");
 
             for(int age = 0; age <= maxage; age++)
             {
@@ -26,7 +31,7 @@ namespace BigBangExpansionSimulation
                     List<Region> expansion = new List<Region>();
 
                     foreach (Region r in Universe)
-                        expansion.AddRange(r.Expand());
+                        expansion.AddRange(r.Expand(epk));
 
                     Universe = expansion.ToArray();
                 }

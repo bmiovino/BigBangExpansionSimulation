@@ -18,7 +18,7 @@ namespace BigBangExpansionSimulation
 
             foreach(Region r in universe)
             {
-                int c = (int)((r.Energy + 1.0F) / 2.0F) * 255;
+                int c = (int)(((r.Energy + 1.0F) / 2.0F) * 255);
 
                 Pen p = new Pen(Color.FromArgb(255, c, c));
                 Brush br = p.Brush;

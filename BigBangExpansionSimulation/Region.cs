@@ -20,14 +20,14 @@ namespace BigBangExpansionSimulation
         public Coordinate Coordinate;
         public double Energy = 0.0;
 
-        public Region[] Expand()
+        public Region[] Expand(IExpansionKernel epk)
         {
             Region[] regions = new Region[4];
 
             for (int i = 0; i < 2; i++)
                 for (int j = 0; j < 2; j++)
                     regions[j * 2 + i] = 
-                        new Region(CalculateEngergy_InverseParabolic(),
+                        new Region(CalculateEngergy(epk),
                         new Coordinate(i + (Coordinate.X * 2), j + (Coordinate.Y * 2)));
 
             return regions;
@@ -37,7 +37,7 @@ namespace BigBangExpansionSimulation
         /// bias will induce clipping and max/min energy
         /// </summary>
         /// <returns></returns>
-        public double CalculateEngergy_InverseParabolic()
+        public double CalculateEngergy(IExpansionKernel epk)
         {
             double res = 0.0F;
 
@@ -51,7 +51,7 @@ namespace BigBangExpansionSimulation
             else if (r < -1.0)
                 r = -1.0;
 
-            res = (0.75F * (r - (Math.Pow(r, 3) / 3.0F))) + 0.5F;
+            res = epk.EnergyPdf(r);
             
             return res;
         }
